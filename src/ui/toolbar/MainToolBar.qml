@@ -17,6 +17,9 @@ import QGroundControl.Palette               1.0
 import QGroundControl.MultiVehicleManager   1.0
 import QGroundControl.ScreenTools           1.0
 import QGroundControl.Controllers           1.0
+import QtQuick.Dialogs                      1.2
+import QGroundControl.Dialog                1.0
+import QtQuick.Controls.Styles 1.2
 
 Rectangle {
     id:         toolBar
@@ -148,6 +151,7 @@ Rectangle {
                 color:              qgcPal.text
                 visible:            _activeVehicle
             }
+
         }
 
         //-------------------------------------------------------------------------

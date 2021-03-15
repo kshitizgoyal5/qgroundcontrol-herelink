@@ -33,7 +33,7 @@
 #include <QDebug>
 
 #include "VideoStreaming.h"
-
+#include "qgcdialog.h"
 #include "QGC.h"
 #include "QGCApplication.h"
 #include "AudioOutput.h"
@@ -408,7 +408,7 @@ void QGCApplication::_initCommon(void)
 
     qmlRegisterType<QGCPalette>     ("QGroundControl.Palette", 1, 0, "QGCPalette");
     qmlRegisterType<QGCMapPalette>  ("QGroundControl.Palette", 1, 0, "QGCMapPalette");
-
+    qmlRegisterType<QGCDialog>  ("QGroundControl.Dialog", 1, 0, "QGCDialog");
     qmlRegisterUncreatableType<Vehicle>             (kQGCVehicle,                           1, 0, "Vehicle",                    kRefOnly);
     qmlRegisterUncreatableType<MissionItem>         (kQGCVehicle,                           1, 0, "MissionItem",                kRefOnly);
     qmlRegisterUncreatableType<MissionManager>      (kQGCVehicle,                           1, 0, "MissionManager",             kRefOnly);

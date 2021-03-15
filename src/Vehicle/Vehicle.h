@@ -750,7 +750,9 @@ public:
     //  returns 1 if current > compare, 0 if current == compare, -1 if current < compare
     Q_INVOKABLE int versionCompare(QString& compare);
     Q_INVOKABLE int versionCompare(int major, int minor, int patch);
-
+    Q_INVOKABLE void turnMode(QString turnAngle);
+    Q_INVOKABLE void diveMode(QString diveAngle);
+    Q_INVOKABLE void orbitMode();
     /// Test motor
     ///     @param motor Motor number, 1-based
     ///     @param percent 0-no power, 100-full power

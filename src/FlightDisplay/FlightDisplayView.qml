@@ -709,6 +709,123 @@ QGCView {
             color:              qgcPal.window
             visible:            false
         }
+        Rectangle{
+            y:                 parent.height - height - 25
+            x:                 parent.width  - width  - 150
+            z:                 _guidedController.z
+            color:             "transparent"
+            visible:            _activeVehicle
+            width:              parent.width / 5
+            height:             width / 3
+
+            RowLayout{
+                anchors.bottomMargin:   1
+                anchors.rightMargin:    ScreenTools.defaultFontPixelWidth / 2
+                anchors.fill:           parent
+                spacing:                ScreenTools.defaultFontPixelWidth * 2
+
+                Row{
+                    id:                 viewRow
+                    Layout.fillHeight:  true
+                    spacing:            ScreenTools.defaultFontPixelWidth / 2
+
+                    ExclusiveGroup { id: mainActionGroup }
+
+                    Button {
+                               id:                 customModes
+                               anchors.top:        parent.top
+                               anchors.bottom:     parent.bottom
+                               exclusiveGroup:     mainActionGroup
+                               width:              ScreenTools.defaultFontPixelHeight * 3
+                               height:             width
+                               text:               "Custom \nModes"
+                               style: ButtonStyle {
+                                     label: Text {
+                                       renderType: Text.NativeRendering
+                                       verticalAlignment: Text.AlignVCenter
+                                       horizontalAlignment: Text.AlignHCenter
+                                       font.family: "Helvetica"
+                                       font.pointSize: 10
+                                       color: "#800000FF"
+                                       text: control.text
+                                     }
+                                   }
+                               onClicked:          customModeMenu.popup()
+                               visible:            true
+
+                               Menu{
+                                   id: customModeMenu
+                                   property int mode: -1
+                                   MenuItem{
+                                       text: qsTr("Orbit Mode")
+                                       onTriggered: {
+                                           customModes.text = "Orbit \nMode"
+                                           customModeMenu.mode = 0;
+                                       }
+                                   }
+                                   MenuItem{
+                                       text: qsTr("Dive Mode")
+                                       onTriggered: {
+                                           customModes.text = "Dive \nMode"
+                                           customModeMenu.mode = 1;
+                                       }
+                                   }
+                                   MenuItem{
+                                       text: qsTr("Turn Mode")
+                                       onTriggered: {
+                                           customModes.text = "Turn \nMode"
+                                           customModeMenu.mode = 2;
+                                       }
+
+                                   }
+                               }
+                    }
+
+                    TextField {
+                        id: editInput
+                        text: ""
+                        onEditingFinished: {
+                            editInput.deselect();
+                        }
+
+                        anchors.bottom: parent.bottom
+                        width: 150
+                        visible: (customModeMenu.mode === 0? false: true)
+                    }
+                    Button{
+                        id:                     ok
+                        width:                  ScreenTools.defaultFontPixelHeight * 3
+                        height:                 width
+                        anchors.top:        parent.top
+                        anchors.bottom:     parent.bottom
+                        text:                   "OK"
+                        visible:                true
+                        style: ButtonStyle {
+                              label: Text {
+                                renderType: Text.NativeRendering
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignHCenter
+                                font.family: "Helvetica"
+                                font.pointSize: 10
+                                color: "#800000FF"
+                                text: control.text
+                              }
+                            }
+                        Layout.alignment:       Qt.AlignVCenter
+                        onClicked: {
+
+                            if(customModeMenu.mode == 0) _activeVehicle.orbitMode();
+                            else if(customModeMenu.mode == 1) _activeVehicle.diveMode(editInput.text);
+                            else if(customModeMenu.mode == 2) _activeVehicle.turnMode(editInput.text);
+
+                        }
+                    }
+                }
+
+
+            }
+
+        }
     }
 
     //-- Airspace Indicator

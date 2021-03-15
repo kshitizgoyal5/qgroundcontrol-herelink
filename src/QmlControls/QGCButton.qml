@@ -64,7 +64,7 @@ Button {
             /*! This defines the background of the button. */
             background: Rectangle {
                 id:             backRect
-                implicitWidth:  ScreenTools.implicitButtonWidth
+                implicitWidth:   ScreenTools.implicitButtonWidth
                 implicitHeight: ScreenTools.implicitButtonHeight
                 radius:         backRadius
                 border.width:   showBorder ? 1 : 0

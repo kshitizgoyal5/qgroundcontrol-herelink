@@ -12,6 +12,7 @@ import QtQuick          2.3
 import QtQuick.Controls 1.2
 import QtQuick.Dialogs  1.2
 import QtPositioning    5.3
+import QtQuick.Layouts      1.2
 
 import QGroundControl                       1.0
 import QGroundControl.Palette               1.0
@@ -277,7 +278,6 @@ Item {
         anchors.top:        parent.top
         opacity:            planToolBar.visible ? 0 : 1
         z:                  QGroundControl.zOrderTopMost
-
         Component.onCompleted:  ScreenTools.availableHeight = parent.height - toolBar.height
         onShowSettingsView:     mainWindow.showSettingsView()
         onShowSetupView:        mainWindow.showSetupView()
